@@ -8,32 +8,31 @@
 */
 int main(int argc, char *argv[])
 {
-FILE *file_ptr;
-char *buffer = NULL;
-size_t buffer_size = 0;
-ssize_t bytes_read;
+char *input_file;
 int num;
+FILE *file;
 
 if (argc != 2)
 {
-fprintf(stderr, "Usage: factor <filename>\n");
-exit(EXIT_FAILURE);
+fprintf(stderr, "Usage: %s <file>\n", argv[0]);
+return (EXIT_FAILURE);
 }
 
-file_ptr = fopen(argv[1], "r");
-if (file_ptr == NULL)
+input_file = argv[1];
+file = fopen(input_file, "r");
+
+if (file == NULL)
 {
-fprintf(stderr, "Error: can't open file %s\n", argv[1]);
-exit(EXIT_FAILURE);
+perror("Error opening file");
+return (EXIT_FAILURE);
 }
 
-while ((bytes_read = getline(&buffer, &buffer_size, file_ptr)) != -1)
+while (fscanf(file, "%d", &num) == 1)
 {
-num = atoi(buffer);
 factorise(num);
 }
 
-free(buffer); /* Free the memory allocated by getline */
+fclose(file);
 
-return (0);
+return (EXIT_SUCCESS);
 }

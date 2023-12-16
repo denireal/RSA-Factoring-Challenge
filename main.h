@@ -4,9 +4,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include <inttypes.h>
-#define _GNU_SOURCE
+#include <math.h>
 
-void factorise(u_int32_t num);
+void factorise(int num);
 
 #endif /* MAIN_H_ */

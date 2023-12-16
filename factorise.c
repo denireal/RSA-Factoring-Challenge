@@ -4,16 +4,17 @@
 * factorise - Factorises a number and prints the result
 * @num: The number to factorize
 */
-void factorise(u_int32_t num)
+void factorise(int num)
 {
-u_int32_t i;
+int i;
 
-for (i = 2; i < num; i++)
+for (i = 2; i <= sqrt(num); i++)
 {
 if (num % i == 0)
 {
-printf("%" PRIu32 "=%" PRIu32 "*%" PRIu32 "\n", num, num / i, i);
-break;
+printf("%d=%d*%d\n", num, i, num / i);
+return;
 }
 }
+printf("%d=%d*%d\n", num, num, 1);
 }
